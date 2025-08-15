@@ -22,7 +22,7 @@ spring:
                 - name: LoggingOrdersFilter
                 - name: Authentication
                   args:
-                    isEnabled: true
+                    enabled: true
             - id: inventory-service
               uri: lb://INVENTORY-SERVICE
               predicates:

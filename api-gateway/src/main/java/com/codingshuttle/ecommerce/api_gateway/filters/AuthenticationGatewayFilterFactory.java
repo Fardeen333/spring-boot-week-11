@@ -25,7 +25,7 @@ public class AuthenticationGatewayFilterFactory extends AbstractGatewayFilterFac
     @Override
     public GatewayFilter apply(Config config) {
         return (exchange, chain) -> {
-            if (!config.isEnabled) return chain.filter(exchange);
+            if (!config.enabled) return chain.filter(exchange);
 
             String authorizationHeader = exchange.getRequest().getHeaders().getFirst("Authorization");
             if (authorizationHeader == null) {
@@ -49,7 +49,7 @@ public class AuthenticationGatewayFilterFactory extends AbstractGatewayFilterFac
 
     @Data
     public static class Config {
-        private boolean isEnabled;
+        private boolean enabled;
     }
 
 }
