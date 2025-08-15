@@ -16,6 +16,7 @@ spring:
                 - Method= GET, POST
               filters:
                 - StripPrefix=2
+                - LoggingOrdersFilter
             - id: inventory-service
               uri: lb://INVENTORY-SERVICE
               predicates:
