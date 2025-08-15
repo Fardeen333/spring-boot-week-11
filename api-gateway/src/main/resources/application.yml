@@ -1,3 +1,6 @@
+jwt:
+  secretKey: vusvihvwefy8wefusboweu9wur9w4y88te8efy984tu8484
+
 spring:
   application:
     name: api-gateway
@@ -16,7 +19,10 @@ spring:
                 - Method= GET, POST
               filters:
                 - StripPrefix=2
-                - LoggingOrdersFilter
+                - name: LoggingOrdersFilter
+                - name: Authentication
+                  args:
+                    isEnabled: true
             - id: inventory-service
               uri: lb://INVENTORY-SERVICE
               predicates:
@@ -24,6 +30,7 @@ spring:
                 - Method= GET, POST
               filters:
                 - StripPrefix=2
+                - name: Authentication
                 - AddRequestHeader=X-Custom-Header, Fardeen
 eureka:
   client:
